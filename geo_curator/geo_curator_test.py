@@ -22,14 +22,14 @@ class MockWriter(Writer):
 class TestJob(unittest.TestCase):
 
     def setUp(self):
-        self.threshold = 100
+        self.radius = 100
         self.calculator = GreatCircle()
         self.reference = Location(53.339428, -6.257664)
         self.writer = MockWriter()
 
     def test_text_file_reader(self):
         CuratorJob(reference=self.reference,
-                   threshold=self.threshold,
+                   radius=self.radius,
                    calculator=self.calculator,
                    writer=self.writer,
                    reader=TextFileReader(fixture('test_job_customers'))
@@ -41,7 +41,7 @@ class TestJob(unittest.TestCase):
     def test_file_not_found_reader(self):
         with self.assertRaises(FileNotFoundError):
             CuratorJob(reference=self.reference,
-                       threshold=self.threshold,
+                       radius=self.radius,
                        calculator=self.calculator,
                        writer=self.writer,
                        reader=TextFileReader(fixture(''))
@@ -50,7 +50,7 @@ class TestJob(unittest.TestCase):
     def test_file_not_found_writer(self):
         with self.assertRaises(FileNotFoundError):
             CuratorJob(reference=self.reference,
-                       threshold=self.threshold,
+                       radius=self.radius,
                        calculator=self.calculator,
                        writer=TextFileWriter(''),
                        reader=TextFileReader(fixture('test_job_customers'))

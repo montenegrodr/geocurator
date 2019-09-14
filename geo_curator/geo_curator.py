@@ -3,9 +3,9 @@ from geo_curator.parser import Customer, JSONParser
 
 
 class CuratorJob:
-    def __init__(self, reference, threshold, calculator, reader, writer, parser=JSONParser()):
+    def __init__(self, reference, radius, calculator, reader, writer, parser=JSONParser()):
         self.reference = reference
-        self.threshold = threshold
+        self.radius = radius
         self.calculator = calculator
         self.reader = reader
         self.writer = writer
@@ -20,7 +20,7 @@ class CuratorJob:
                 customer.location
             )
 
-            if distance <= self.threshold:
+            if distance <= self.radius:
                 bisect.insort(
                     self.sorted_list,
                     customer
