@@ -1,5 +1,8 @@
 import bisect
+import logging
 from geo_curator.parser import Customer, JSONParser
+
+logger = logging.getLogger('geo_curator')
 
 
 class CuratorJob:
@@ -27,6 +30,6 @@ class CuratorJob:
                 )
 
         for sorted_customer in self.sorted_list:
-            self.writer.write(
-                sorted_customer.to_str(self.parser)
-            )
+            customer_str = sorted_customer.to_str(self.parser)
+            self.writer.write(customer_str)
+            logger.info(customer_str)

@@ -1,5 +1,8 @@
 import json
+import logging
 from enum import Enum
+
+logger = logging.getLogger('geo_curator')
 
 
 class Location:
@@ -76,4 +79,5 @@ class JSONParser(Parser):
                 longitude=j['longitude']
             )
         except KeyError as e:
+            logger.exception(e)
             raise JSONParserDecodeException(f'Error while decoding json: {e}')
