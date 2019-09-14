@@ -1,11 +1,32 @@
 import json
 from enum import Enum
 
+LAT_MIN = -90
+LAT_MAX = 90
+LONG_MIN = -180
+LONG_MAX = 180
+
+
+class IllegalLocationException(Exception):
+    pass
+
 
 class Location:
     def __init__(self, latitude, longitude):
         self.latitude = float(latitude)
         self.longitude = float(longitude)
+
+        if self.latitude < LAT_MIN or self.latitude > LAT_MAX:
+            raise IllegalLocationException(
+                f'Latitude should be in the range ({LAT_MIN}, {LAT_MAX}).'
+                f'Found {self.latitude} instead'
+            )
+        if self.longitude < LONG_MIN or self.longitude > LONG_MAX:
+            raise IllegalLocationException(
+                f'Longitude should be in the range ({LONG_MIN}, {LONG_MAX}).'
+                f'Found {self.longitude} instead'
+            )
+
 
 
 class Customer:

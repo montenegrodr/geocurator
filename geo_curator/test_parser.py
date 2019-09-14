@@ -1,5 +1,5 @@
 import unittest
-from geo_curator.parser import Customer, JSONParser, JSONParserDecodeException
+from geo_curator.parser import Customer, JSONParser, JSONParserDecodeException, IllegalLocationException, Location
 
 
 class TestParser(unittest.TestCase):
@@ -66,3 +66,10 @@ class TestParser(unittest.TestCase):
         with self.assertRaises(JSONParserDecodeException):
             Customer.from_str('{}', JSONParser())
 
+    def test_illegal_latitude(self):
+        with self.assertRaises(IllegalLocationException):
+            Location(-91, 91)
+
+    def test_illegal_latitude(self):
+        with self.assertRaises(IllegalLocationException):
+            Location(-181, 181)
