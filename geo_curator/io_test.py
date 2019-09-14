@@ -9,8 +9,6 @@ class TestIO(unittest.TestCase):
         for _ in TextFileReader(''):
             pass
         self.assertTrue(mock_codecs.open.called)
-        self.assertTrue(mock_codecs.open.return_value.__enter__.return_value
-                        .read.called)
 
     @mock.patch('geo_curator.io.codecs')
     def test_text_file_writer(self, mock_codecs):
