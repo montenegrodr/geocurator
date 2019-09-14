@@ -4,27 +4,19 @@ DEFAULT_ENCODING = 'utf-8'
 
 
 class Reader:
-    def __iter__(self):
-        return self
-
-    def __next__(self):
+    def iterator(self):
         raise NotImplementedError()
 
 
 class TextFileReader(Reader):
     def __init__(self, file_path):
-        self.handle = codecs.open(
-            file_name=file_path,
-            encoding=DEFAULT_ENCODING
-        )
+        self.file_path = file_path
 
-    def __next__(self):
-        try:
-            for line in self.handle:
-                return line
-        finally:
-            self.handle.close()
-            raise StopIteration
+    def iterator(self):
+        with codecs.open(filename=self.file_path,
+                         encoding=DEFAULT_ENCODING) as r:
+            for line in r:
+                yield line
 
 
 class Writer:

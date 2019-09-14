@@ -6,7 +6,7 @@ from geo_curator.io import TextFileReader, TextFileWriter
 class TestIO(unittest.TestCase):
     @mock.patch('geo_curator.io.codecs')
     def test_text_file_reader(self, mock_codecs):
-        for _ in TextFileReader(''):
+        for _ in TextFileReader('').iterator():
             pass
         self.assertTrue(mock_codecs.open.called)
 
