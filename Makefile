@@ -50,6 +50,7 @@ push-image:
 	docker push $(REGISTRY)/$(REPOSITORY):${VERSION}
 	docker push $(REGISTRY)/$(REPOSITORY):latest
 
+
 .PHONY: run-image
 run-image:
 	docker run . -t $(REGISTRY)/$(REPOSITORY):latest

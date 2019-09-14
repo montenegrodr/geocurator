@@ -6,7 +6,7 @@ logger = logging.getLogger('geo_curator')
 
 
 class CuratorJob:
-    def __init__(self, reference, radius, calculator, reader, writer, parser=JSONParser()):
+    def __init__(self, reference, radius, calculator, reader, writer, parser):
         self.reference = reference
         self.radius = radius
         self.calculator = calculator

@@ -3,8 +3,8 @@ import unittest
 
 from geo_curator.distance import GreatCircle
 from geo_curator.curator import CuratorJob
+from geo_curator.parser import Location, Parser, Parsers
 from geo_curator.io import TextFileReader, Writer, TextFileWriter
-from geo_curator.parser import Location
 
 
 def fixture(file_name):
@@ -26,12 +26,14 @@ class TestJob(unittest.TestCase):
         self.calculator = GreatCircle()
         self.reference = Location(53.339428, -6.257664)
         self.writer = MockWriter()
+        self.parser = Parser.factory(Parsers.JSON)
 
     def test_text_file_reader(self):
         CuratorJob(radius=self.radius,
                    reference=self.reference,
                    calculator=self.calculator,
                    writer=self.writer,
+                   parser=self.parser,
                    reader=TextFileReader(fixture('test_job_customers'))
                    ).run()
 
@@ -44,6 +46,7 @@ class TestJob(unittest.TestCase):
                        reference=self.reference,
                        calculator=self.calculator,
                        writer=self.writer,
+                       parser=self.parser,
                        reader=TextFileReader(fixture(''))
                        ).run()
 
@@ -53,5 +56,6 @@ class TestJob(unittest.TestCase):
                        reference=self.reference,
                        calculator=self.calculator,
                        writer=TextFileWriter(''),
+                       parser=self.parser,
                        reader=TextFileReader(fixture('test_job_customers'))
                        ).run()

@@ -3,8 +3,8 @@ import argparse
 import logging
 
 from geo_curator.curator import CuratorJob
-from geo_curator.parser import Location
 from geo_curator.distance import GreatCircle
+from geo_curator.parser import Location, Parser, Parsers
 from geo_curator.io import TextFileReader, TextFileWriter
 
 
@@ -14,6 +14,7 @@ def main(args, logger):
         CuratorJob(
             radius=args.radius,
             calculator=GreatCircle(),
+            parser=Parser.factory(Parsers.JSON),
             writer=TextFileWriter(args.output_file),
             reader=TextFileReader(args.customers_file),
             reference=Location(args.reference_lat,
