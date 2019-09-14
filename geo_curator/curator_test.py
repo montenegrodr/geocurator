@@ -2,7 +2,7 @@ import os
 import unittest
 
 from geo_curator.distance import GreatCircle
-from geo_curator.geo_curator import CuratorJob
+from geo_curator.curator import CuratorJob
 from geo_curator.io import TextFileReader, Writer, TextFileWriter
 from geo_curator.parser import Location
 
