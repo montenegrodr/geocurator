@@ -10,10 +10,20 @@ class Location:
 
 class Customer:
     def __init__(self, id, name, latitude, longitude):
-        self.id = id
+        self.id = int(id)
         self.name = name
         self.location = Location(latitude,
                                  longitude)
+
+    def __gt__(self, other):
+        return self.id >= other.id
+
+    def __lt__(self, other):
+        return self.id < other.id
+
+    def __repr__(self):
+        return f'Customer({self.name}, ' \
+               f'{self.id})'
 
     @staticmethod
     def from_str(str, decoder):

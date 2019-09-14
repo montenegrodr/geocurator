@@ -1,0 +1,10 @@
+{"latitude": "53.7613890", "user_id": 0, "name": "c0", "longitude": "-7.2875"}
+{"latitude": "51.8856167", "user_id": 1, "name": "c1", "longitude": "-10.424"}
+{"latitude": "53.4692815", "user_id": 2, "name": "c2", "longitude": "-9.4360"}
+{"latitude": "53.1229599", "user_id": 3, "name": "c3", "longitude": "-6.2705"}
+{"latitude": "53.1302756", "user_id": 4, "name": "c4", "longitude": "-6.2397"}
+{"latitude": "51.9994470", "user_id": 5, "name": "c5", "longitude": "-9.7427"}
+{"latitude": "52.3660370", "user_id": 6, "name": "c6", "longitude": "-8.1791"}
+{"latitude": "53.0033946", "user_id": 7, "name": "c7", "longitude": "-6.3877"}
+{"latitude": "53.5211110", "user_id": 8, "name": "c8", "longitude": "-9.8311"}
+{"latitude": "54.3742080", "user_id": 9, "name": "c9", "longitude": "-8.3716"}
