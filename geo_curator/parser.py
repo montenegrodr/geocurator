@@ -1,12 +1,21 @@
 from enum import Enum
 
 
+class Location:
+    def __init__(self, latitude, longitude):
+        self.latitude = latitude
+        self.longitude = longitude
+
+
 class Customer:
     def __init__(self, id, name, latitude, longitude):
         self.id = id
         self.name = name
-        self.latitude = latitude
-        self.longitude = longitude
+        self.location = Location(latitude,
+                                 longitude)
+
+    def location(self):
+        return self.location
 
     @staticmethod
     def from_str(str, decoder):

@@ -4,6 +4,8 @@ import numpy as np
 from geo_curator.distance import GreatCircle
 from geo_curator.parser import Location
 
+PRECISION = 2
+
 
 class TestDistance(unittest.TestCase):
     def setUp(self):
@@ -16,7 +18,8 @@ class TestDistance(unittest.TestCase):
             actual=GreatCircle().distance(
                 self.office, self.temple_bar
             ),
-            desired=0.9050916
+            desired=0.9050916,
+            decimal=PRECISION
         )
 
     def test_long_distance(self):
@@ -24,7 +27,8 @@ class TestDistance(unittest.TestCase):
             actual=GreatCircle().distance(
                 self.office, self.torre
             ),
-            desired=5656.8585267
+            desired=5656.8585267,
+            decimal=PRECISION
         )
 
     def test_great_circle_all_zero(self):
