@@ -8,6 +8,7 @@ RADIUS              ?= 100
 REGISTRY            := montenegrodr
 VERSION             := 0.1
 REPOSITORY          := geo_curator
+MONITOR             := 8000
 
 
 $(CUSTOMERS_FILE_NAME):
@@ -31,7 +32,8 @@ run:
         --output-file $(OUTPUT_FILE_NAME) \
         --reference-lat $(REFERENCE_LAT) \
         --reference-long $(REFERENCE_LONG) \
-        --radius $(RADIUS)
+        --radius $(RADIUS) \
+        --montitor $(MONITOR)
 
 
 .PHONY: test

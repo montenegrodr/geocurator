@@ -2,6 +2,7 @@ import sys
 import argparse
 import logging
 
+from geo_curator.monitor import Monitor
 from geo_curator.curator import CuratorJob
 from geo_curator.distance import GreatCircle
 from geo_curator.parser import Location, Parser, Parsers
@@ -10,6 +11,9 @@ from geo_curator.io import TextFileReader, TextFileWriter
 
 def main(args, logger):
     logger.info(f'Starting curating customer with. Arguments: {args}')
+    logger.info('Starting prometheus monitoring')
+    monitor = Monitor(args.monitor)
+    monitor.start()
     try:
         CuratorJob(
             radius=args.radius,
@@ -21,6 +25,7 @@ def main(args, logger):
                                args.reference_long)
         ).run()
     except Exception as e:
+        monitor.fatal_errors()
         logger.exception(e)
 
 
@@ -58,6 +63,10 @@ def parse_args():
     parser.add_argument('--radius',
                         type=float,
                         help='Radius threshold',
+                        required=True)
+    parser.add_argument('--monitor',
+                        type=int,
+                        help='Monitor port',
                         required=True)
     return parser.parse_args()
 
