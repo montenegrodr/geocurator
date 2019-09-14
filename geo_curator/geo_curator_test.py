@@ -28,8 +28,8 @@ class TestJob(unittest.TestCase):
         self.writer = MockWriter()
 
     def test_text_file_reader(self):
-        CuratorJob(reference=self.reference,
-                   radius=self.radius,
+        CuratorJob(radius=self.radius,
+                   reference=self.reference,
                    calculator=self.calculator,
                    writer=self.writer,
                    reader=TextFileReader(fixture('test_job_customers'))
@@ -40,8 +40,8 @@ class TestJob(unittest.TestCase):
 
     def test_file_not_found_reader(self):
         with self.assertRaises(FileNotFoundError):
-            CuratorJob(reference=self.reference,
-                       radius=self.radius,
+            CuratorJob(radius=self.radius,
+                       reference=self.reference,
                        calculator=self.calculator,
                        writer=self.writer,
                        reader=TextFileReader(fixture(''))
@@ -49,8 +49,8 @@ class TestJob(unittest.TestCase):
 
     def test_file_not_found_writer(self):
         with self.assertRaises(FileNotFoundError):
-            CuratorJob(reference=self.reference,
-                       radius=self.radius,
+            CuratorJob(radius=self.radius,
+                       reference=self.reference,
                        calculator=self.calculator,
                        writer=TextFileWriter(''),
                        reader=TextFileReader(fixture('test_job_customers'))
