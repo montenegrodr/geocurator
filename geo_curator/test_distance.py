@@ -1,10 +1,9 @@
 import unittest
-import numpy as np
 
 from geo_curator.distance import GreatCircle
 from geo_curator.parser import Location
 
-PRECISION = 2
+PRECISION = 1
 
 
 class TestDistance(unittest.TestCase):
@@ -14,21 +13,21 @@ class TestDistance(unittest.TestCase):
         self.temple_bar = Location(53.3454325, -6.2668687)
 
     def test_short_distance(self):
-        np.testing.assert_almost_equal(
-            actual=GreatCircle().distance(
+        self.assertAlmostEqual(
+            first=GreatCircle().distance(
                 self.office, self.temple_bar
             ),
-            desired=0.9050916,
-            decimal=PRECISION
+            second=0.9050916,
+            places=PRECISION
         )
 
     def test_long_distance(self):
-        np.testing.assert_almost_equal(
-            actual=GreatCircle().distance(
+        self.assertAlmostEqual(
+            first=GreatCircle().distance(
                 self.office, self.torre
             ),
-            desired=5656.8585267,
-            decimal=PRECISION
+            second=5656.8585267,
+            places=PRECISION
         )
 
     def test_great_circle_all_zero(self):
