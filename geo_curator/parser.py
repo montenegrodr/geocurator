@@ -1,10 +1,11 @@
+import json
 from enum import Enum
 
 
 class Location:
     def __init__(self, latitude, longitude):
-        self.latitude = latitude
-        self.longitude = longitude
+        self.latitude = float(latitude)
+        self.longitude = float(longitude)
 
 
 class Customer:
@@ -14,15 +15,12 @@ class Customer:
         self.location = Location(latitude,
                                  longitude)
 
-    def location(self):
-        return self.location
-
     @staticmethod
     def from_str(str, decoder):
-        raise NotImplementedError()
+        return decoder.decode(str)
 
     def to_str(self, encoder):
-        raise NotImplementedError()
+        return encoder.encode(self)
 
 
 class Parsers(Enum):
@@ -45,9 +43,27 @@ class Parser:
         raise NotImplementedError()
 
 
+class JSONParserDecodeException(Exception):
+    pass
+
+
 class JSONParser(Parser):
     def encode(self, obj):
-        raise NotImplementedError()
+        return json.dumps({
+            'name': obj.name,
+            'user_id': obj.id,
+            'latitude': obj.location.latitude,
+            'longitude': obj.location.longitude
+        })
 
     def decode(self, obj):
-        raise NotImplementedError()
+        try:
+            j = json.loads(obj)
+            return Customer(
+                id=j['user_id'],
+                name=j['name'],
+                latitude=j['latitude'],
+                longitude=j['longitude']
+            )
+        except KeyError as e:
+            raise JSONParserDecodeException(f'Error while decoding json: {e}')
