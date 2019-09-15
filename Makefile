@@ -55,4 +55,4 @@ push-image:
 
 .PHONY: run-image
 run-image:
-	docker run . -t $(REGISTRY)/$(REPOSITORY):latest
+	docker run $(REGISTRY)/$(REPOSITORY):latest

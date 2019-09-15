@@ -8,7 +8,7 @@
 The quickest way for running this is by pulling the latest container. That only requires `docker` installed (you may need to `sudo` commands below):
 
 ```bash
-docker run . -t montenegrodr/geo_curator:latest
+docker run montenegrodr/geo_curator:latest
 ```
 
 or, at this repository root:
