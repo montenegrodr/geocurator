@@ -19,7 +19,7 @@ class TestDistance(unittest.TestCase):
             ),
             second=0.9050916,
             places=PRECISION
-        )
+        ), f'Incorrect distance for given precision {PRECISION}'
 
     def test_long_distance(self):
         self.assertAlmostEqual(
@@ -28,7 +28,7 @@ class TestDistance(unittest.TestCase):
             ),
             second=5656.8585267,
             places=PRECISION
-        )
+        ), f'Incorrect distance for given precision {PRECISION}'
 
     def test_great_circle_all_zero(self):
         assert GreatCircle().distance(
