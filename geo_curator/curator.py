@@ -7,7 +7,7 @@ logger = logging.getLogger('geo_curator')
 
 class CuratorJob:
     """
-    Curates elements from an source based on the distance to a reference
+    Curates elements from an source based on the distance from a reference location
     """
     def __init__(self, reference, radius, calculator, reader, writer, parser):
         """
@@ -47,6 +47,8 @@ class CuratorJob:
             )
 
             if distance <= self.radius:
+                # Insert customer in sorted list
+                # and keep it sorted O(log n)
                 bisect.insort(
                     self.sorted_list,
                     customer
