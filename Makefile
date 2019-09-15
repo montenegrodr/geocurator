@@ -5,10 +5,10 @@ OUTPUT_FILE_NAME    ?= output.txt
 REFERENCE_LAT       ?= 53.339428
 REFERENCE_LONG      ?= -6.257664
 RADIUS              ?= 100
-REGISTRY            := montenegrodr
-VERSION             := 0.1
-REPOSITORY          := geo_curator
-MONITOR             := 8000
+REGISTRY            ?= montenegrodr
+VERSION             ?= 0.1
+REPOSITORY          ?= geo_curator
+MONITOR             ?= 8000
 
 
 $(CUSTOMERS_FILE_NAME):
@@ -33,7 +33,7 @@ run:
         --reference-lat $(REFERENCE_LAT) \
         --reference-long $(REFERENCE_LONG) \
         --radius $(RADIUS) \
-        --montitor $(MONITOR)
+        --monitor $(MONITOR)
 
 
 .PHONY: test
