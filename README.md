@@ -53,7 +53,7 @@ Run tests for a sanity check (you expect to see an `OK`):
 make test
 ```
 
-# Deployment
+## Deployment
 
 
 Build a new image:
