@@ -12,7 +12,18 @@ class IllegalLocationException(Exception):
 
 
 class Location:
+    """
+    Location point based on Latitude and Longitude coordinates
+    """
     def __init__(self, latitude, longitude):
+        """
+        Parameters
+        ----------
+        latitude : float
+            latitude coordinate
+        longitude : float
+            longitude coordinate
+        """
         self.latitude = float(latitude)
         self.longitude = float(longitude)
 
@@ -28,9 +39,23 @@ class Location:
             )
 
 
-
 class Customer:
+    """
+    Customer class representation
+    """
     def __init__(self, id, name, latitude, longitude):
+        """
+        Parameters
+        ----------
+        id : str/int
+            customer's unique identifier
+        name : str
+            customer's name
+        latitude : float
+            customer's location latitude coordinate
+        longitude : float
+            customer's location coordinate
+        """
         self.id = int(id)
         self.name = name
         self.location = Location(latitude,
@@ -59,6 +84,9 @@ class Parsers(Enum):
 
 
 class Parser:
+    """
+    Abstract class for customer's object encoding decoding
+    """
     @staticmethod
     def factory(parser=Parsers.JSON):
         if parser == Parsers.JSON:
@@ -80,6 +108,19 @@ class JSONParserDecodeException(Exception):
 
 class JSONParser(Parser):
     def encode(self, obj):
+        """
+        Encode customer object into a json string
+
+        Parameters
+        ----------
+        obj : Customer
+            customer object
+
+        Returns
+        -------
+        str
+           customer object json encoded into a string
+        """
         return json.dumps({
             'name': obj.name,
             'user_id': obj.id,
@@ -88,6 +129,23 @@ class JSONParser(Parser):
         })
 
     def decode(self, obj):
+        """
+        Decode a json string into Customer object
+
+        Parameters
+        ----------
+        obj : str
+            string with a json string
+
+        Returns
+        -------
+        Customer
+           customer object
+
+        Raises
+        ------
+        JSONParserDecodeException
+        """
         try:
             j = json.loads(obj)
             return Customer(
