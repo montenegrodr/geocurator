@@ -10,7 +10,7 @@ from geo_curator.io import TextFileReader, TextFileWriter
 
 
 def main(args, logger):
-    logger.info(f'Starting curating customer with. Arguments: {args}')
+    logger.info(f'Starting curating customer with arguments: {args}')
     logger.info('Starting prometheus monitoring')
     monitor = Monitor(args.monitor)
     monitor.start()
