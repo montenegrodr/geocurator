@@ -70,6 +70,6 @@ class TestParser(unittest.TestCase):
         with self.assertRaises(IllegalLocationException):
             Location(-91, 91)
 
-    def test_illegal_latitude(self):
+    def test_illegal_longitude(self):
         with self.assertRaises(IllegalLocationException):
             Location(-181, 181)
